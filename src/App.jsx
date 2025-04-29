@@ -1,7 +1,14 @@
 import './App.css'
 import Header from './components/Header/Header'
 import TodoList from './components/TodoList/TodoList'
-// import './components/Header.jsx'
+import NewTodoTask from './components/NewTodoTask/NewTodoTask.jsx'
+
+let initialid = 4;
+
+function uniqueId() {
+  return initialid++;
+}
+
 function App() {
   const todoList = [
     {
@@ -30,9 +37,20 @@ function App() {
     }
   ]
 
+  const addNewTodo = (newTodo) => {
+    const newTodoData = {
+      ...newTodo,
+      ifFinished: false,
+      id: uniqueId(),
+    }
+
+    console.log(newTodoData);
+  }
+
   return (
     <div className="App">
       <Header />
+      <NewTodoTask addNewTodo={addNewTodo}/>
       <TodoList todos={todoList}/>
     </div>
   )
